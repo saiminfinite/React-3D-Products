@@ -1,31 +1,27 @@
-export default function Sidebar({ selectedPart, onSelect }) {
-  const parts = ["Seat", "Backrest", "Legs"];
 
+import "./Sidebar.css";
+
+const Sidebar = ({ parts, selectedPart, onPartSelect }) => {
   return (
-    <div
-      style={{
-        width: 200,
-        padding: 10,
-        background: "#f4f4f4",
-        borderRight: "1px solid #ddd",
-      }}
-    >
-      <h3>Parts</h3>
+    <div className="sidebar">
+      <h2 className="sidebar-title">Chair Parts</h2>
 
-      {parts.map((part) => (
-        <div
-          key={part}
-          onClick={() => onSelect(part)}
-          style={{
-            padding: 8,
-            marginBottom: 5,
-            cursor: "pointer",
-            background: selectedPart === part ? "#ccc" : "#fff",
-          }}
-        >
-          {part}
-        </div>
-      ))}
+      <div className="sidebar-list">
+        {parts.map((part) => (
+          <button
+            key={part.id}
+            onClick={() => onPartSelect(part.id)}
+            className={`sidebar-btn ${
+              selectedPart === part.id ? "active" : ""
+            }`}
+          >
+            {part.name}
+          </button>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
+
